@@ -3,6 +3,8 @@ package com.satish.service;
 import java.util.List;
 
 import com.satish.response.ProductResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +16,8 @@ import com.satish.repository.ProductRepository;
 
 @Service
 public class ProductService {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductService.class);
 
     private final ProductRepository productRepository;
 
@@ -30,7 +34,10 @@ public class ProductService {
     }
 
     public ProductResponse getProductsWithPagination(int pageNo, int pageSize, String sortBy, String sortDir){
-
+        log.info("INFO - pageNo: {}, pageSize: {}, sortBy: {}, sortDir: {}", pageNo, pageSize, sortBy, sortDir);
+        log.error("ERROR - pageNo: {}, pageSize: {}, sortBy: {}, sortDir: {}", pageNo, pageSize, sortBy, sortDir);
+        log.warn("WARN - pageNo: {}, pageSize: {}, sortBy: {}, sortDir: {}", pageNo, pageSize, sortBy, sortDir);
+        log.debug("DEBUG -pageNo: {}, pageSize: {}, sortBy: {}, sortDir: {}", pageNo, pageSize, sortBy, sortDir);
 //        Sort sort = sortDir.equalsIgnoreCase("ASC") ? Sort.by(sortBy).ascending() :
 //                Sort.by(sortBy).descending();
         Sort sort = Sort.by(Sort.Order.asc("price"), Sort.Order.desc("category"));
